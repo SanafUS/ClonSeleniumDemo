@@ -20,12 +20,6 @@ test suite
 - How to implement the page object pattern for the sample application
 
 
-
-
-
-
-
-
 ## Page Object Model (POM)
 
 [POM_Image](/screenshots/pom_image.png)
@@ -48,6 +42,7 @@ Many automation test cases would be clicking through these menu buttons to execu
 Now, QA Engineer need to walk through whole code to update locators where necessary. Updating element-locators in duplicated code will consume a lot of time to only adjust locators, while this time can be consumed to increase test coverage. We can save this time by using Page Object Model in our test automation framework.
 
 ### Advantages of Page Object Model:
+
 1. According to Page Object Model, we should keep our tests and element locators separately, this will keep code clean and easy to understand and maintain.
 2. The Page Object approach makes test automation framework programmer friendly, more durable and comprehensive.
 3. Another important advantage is our Page Object Repository is Independent of Automation Tests. Keeping separate repository for page objects helps us to use this repository for different purposes with different frameworks like, we are able to integrate this repository with other tools like JUnit/NUnit/PhpUnit as well as with TestNG/Cucumber/etc.
