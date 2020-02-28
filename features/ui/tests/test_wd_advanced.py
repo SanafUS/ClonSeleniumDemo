@@ -38,18 +38,10 @@ def test_popup_window(browser):
     url = "https://learn.letskodeit.com/p/practice"
     browser.get(url)
 
-    # Steps to automate:
-    # get current handle
-    # find element to click
-    # get all handles with driver.window_handles
-    # loop all handles and go to the handle that is not parent
-    # find element - search box and enter something
-    # submit,  take a screenshot, use break
-    # switch back to main window
-    # log each step with print
     parentHandle = browser.current_window_handle
-    element = browser.find_element_by_xpath("//button[@id='openwindow']")
-    element.click()
+    popUpWindow = PopUpWindow(browser)
+    popUpWindow.click_openwindow()
+
     print("new window opened, getting the handles")
     handles = browser.window_handles  # returns the list of all window handles
 
@@ -57,10 +49,7 @@ def test_popup_window(browser):
         if handle != parentHandle:
             browser.switch_to.window(handle)
             print('switching to new window')
-            search = browser.find_element_by_xpath(
-                "//input[@id='search-courses']")
-            search.send_keys("python")
-            search.submit()
+            popUpWindow.search_text("python")
             sleep(5)
             print('search successfully executed, taking screenshot')
             filepath = "./screenshots/window-" + utils.get_timestamp() + ".png"
