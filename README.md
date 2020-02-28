@@ -22,7 +22,7 @@ test suite
 
 ## Page Object Model (POM)
 
-[POM_Image](/screenshots/pom_image.png)
+![POM_Image](/screenshots/pom_image.png)
 
 ### What is POM?
 
@@ -96,7 +96,7 @@ application; search results page, which shows the list of products matching with
 search criteria; and a product page, which provides attributes and actions related to
 a product. We will create a structure as shown in the following diagram:
 
-[pom_implementation](/screenshots/pom_basepage.png)
+![pom_implementation](/screenshots/pom_basepage.png)
 
 ### References:
 - [Page Object Model (POM), Design Pattern - php example](https://medium.com/tech-tajawal/page-object-model-pom-design-pattern-f9588630800b)
