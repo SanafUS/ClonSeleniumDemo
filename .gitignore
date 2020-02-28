@@ -1,0 +1,6 @@
+*__pychache__
+.vscode/
+.pytest_cache/
+__pycache__
+debug.log
+screenshots/
