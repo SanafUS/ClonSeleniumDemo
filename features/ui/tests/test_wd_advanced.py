@@ -1,19 +1,22 @@
 from features.ui.all_imports import *
 
 logger = utils.create_logger()
+data = utils.yaml_loader(".\data\configs.yaml")
 
 @pytest.mark.screenshots
 def test_take_screenshots(browser):
-    """takes screenshots if no element found"""
+    """Login test case with POM , ddt and taking screenshots"""
 
-    url = "http://the-internet.herokuapp.com/login"
+    # Data
+    url = data['url_login']
+    username = data['username']
+    password = data['password']
+
     browser.get(url)
-
-    # use the following Login steps we created previously
     logger.info("loggin page started..")
     login_page = Login(browser)
-    login_page.enter_username("tomsmith")
-    login_page.enter_password("SuperSecretPassword!")
+    login_page.enter_username(username)
+    login_page.enter_password(password)
     login_page.click_login()
     logger.info("logged in, taking screenshot")
     sleep(1)
