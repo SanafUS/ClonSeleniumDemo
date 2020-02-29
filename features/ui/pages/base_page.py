@@ -4,6 +4,7 @@ class BasePage():
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
+        self.logger = utils.create_logger()
 
     def click_element_by_xpath(self, xpath):
         try:
@@ -11,6 +12,7 @@ class BasePage():
             element.click()
         except NoSuchElementException:
             self.take_screenshot('error')
+            self.logger.error(f"element was not found {element}")
             raise
 
     def enter_text_by_xpath(self, xpath, phrase):
@@ -20,9 +22,11 @@ class BasePage():
             element.send_keys(phrase)
         except NoSuchElementException:
             self.take_screenshot('error')
+            self.logger.error(f"element was not found {element}")
             raise
 
     
     def take_screenshot(self, phrase=""):
         filepath = f"./screenshots/{phrase}{utils.get_timestamp()}.png"
         self.driver.save_screenshot(filepath)
+        self.logger.info(f"screenshot is taken :{filepath}")

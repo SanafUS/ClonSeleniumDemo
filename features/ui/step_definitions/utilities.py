@@ -1,6 +1,6 @@
 import time
 import yaml
-
+import logging
 
 def get_timestamp():
     return time.strftime("%Y%m%d-%H%M%S")

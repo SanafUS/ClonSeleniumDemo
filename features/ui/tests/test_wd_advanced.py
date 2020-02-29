@@ -1,5 +1,6 @@
 from features.ui.all_imports import *
 
+logger = utils.create_logger()
 
 @pytest.mark.screenshots
 def test_take_screenshots(browser):
@@ -9,16 +10,16 @@ def test_take_screenshots(browser):
     browser.get(url)
 
     # use the following Login steps we created previously
-    print("loggin page started..")
+    logger.info("loggin page started..")
     login_page = Login(browser)
     login_page.enter_username("tomsmith")
     login_page.enter_password("SuperSecretPassword!")
     login_page.click_login()
-    print("logged in, taking screenshot")
-    sleep(10)
+    logger.info("logged in, taking screenshot")
+    sleep(1)
     login_page.take_screenshot()
-    print('test completed!')
-    # assert "titlename" == login_page.get_title
+    assert "The Internet" == login_page.get_title
+    logger.info('test completed!')
 
 
 
