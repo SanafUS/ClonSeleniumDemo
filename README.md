@@ -19,7 +19,7 @@ library to create data-driven tests
 test suite
 - How to implement the page object pattern for the sample application
 
-
+---
 ## Page Object Model (POM)
 
 ![POM_Image](/screenshots/pom_image.png)
@@ -97,6 +97,224 @@ search criteria; and a product page, which provides attributes and actions relat
 a product. We will create a structure as shown in the following diagram:
 
 ![pom_implementation](/screenshots/pom_basepage.png)
+
+```python
+class BasePage():
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(self.driver, 10)
+
+class Login(BasePage):
+    # LOCATORS
+    username_box = "//input[@id='username']"
+    password_box = "//input[@id='password']"
+```
+----
+
+### Basic Logging Tutorial
+Logging is a means of tracking events that happen when some software runs. The software’s developer adds logging calls to their code to indicate that certain events have occurred. An event is described by a descriptive message which can optionally contain variable data (i.e. data that is potentially different for each occurrence of the event). Events also have an importance which the developer ascribes to the event; the importance can also be called the level or severity.
+
+#### When to use logging
+Logging provides a set of convenience functions for simple logging usage. These are debug(), info(), warning(), error() and critical(). To determine when to use logging, see the table below, which states, for each of a set of common tasks, the best tool to use for it.
+
+
+| LEVEL   |      WHEN IT IS USED      |
+|----------|:-------------|
+| DEBUG |Detailed information, typically of interest only when diagnosing problems. |
+| INFO |Confirmation that things are working as expected. |
+| WARNING |An indication that something unexpected happened, or indicative of some problem in the near future (e.g. ‘disk space low’). The software is still working as expected.|
+| ERROR | Due to a more serious problem, the software has not been able to perform some function.|
+| CRITICAL | A serious error, indicating that the program itself may be unable to continue running. |
+
+#### Logging to a file
+A very common situation is that of recording logging events in a file, so let’s look at that next. Be sure to try the following in a newly-started Python interpreter, and don’t just continue from the session described above:
+
+```python
+import logging
+logging.basicConfig(filename='example.log',level=logging.DEBUG)
+logging.debug('This message should go to the log file')
+logging.info('So should this')
+logging.warning('And this, too')
+```
+
+And now if we open the file and look at what we have, we should find the log messages:
+```python
+DEBUG:root:This message should go to the log file
+INFO:root:So should this
+WARNING:root:And this, too
+```
+This example also shows how you can set the logging level which acts as the threshold for tracking. In this case, because we set the threshold to DEBUG, all of the messages were printed.
+
+Find more about the logging [here.](https://docs.python.org/3.8/howto/logging.html#logging-basic-tutorial)
+
+----
+#### Runners
+
+You can generate html reports with `pytest-html` and share your test reports or configure it in Jenkins reports.
+
+To install pytest-html:
+
+```
+pip install pytest-html
+```
+Find more about pytest-html [here.](https://github.com/davehunt/pytest-html)
+
+Create a `regression.bat` file under `runners` directory
+
+```bat
+cd ..
+pytest -v -s -m tagname --html=./reports/htmlreport.html
+pause
+```
+----
+### Reading and Writing YAML to a File in Python
+
+
+YAML stands for Yet Another Markup Language. In recent years it has become very popular for its use in storing data in a serialized manner for configuration files. Since YAML essentially is a data format, the YAML library is quite brief, as the only functionality required of it is the ability to parse YAML formatted files.
+
+#### Installation
+
+The easiest way to install the YAML library in Python is via the pip package manager.
+
+```
+$ pip install pyyaml
+```
+#### Reading YAML Files in Python
+
+The contents of the first file are as follows:
+
+    # fruits.yaml file
+
+    apples: 20
+    mangoes: 2
+    bananas: 3
+    grapes: 100
+    pineapples: 1
+The contents of the second file are as follows:
+
+    # categories.yaml file
+
+    sports:
+
+    - soccer
+    - football
+    - basketball
+    - cricket
+    - hockey
+    - table tennis
+
+    countries:
+
+    - Pakistan
+    - USA
+    - India
+    - China
+    - Germany
+    - France
+    - Spain
+
+You can see that the fruits.yaml and categories.yaml files contain different types of data. The former contains information only about one entity, i.e. fruits, while the latter contains information about sports and countries.
+
+Let's now try to read the data from the two files that we created using a Python script. The load() method from the yaml module can be used to read YAML files. Look at the following script:
+
+    # process_yaml.py file
+
+    import yaml
+
+    with open(r'E:\data\fruits.yaml') as file:
+        # The FullLoader parameter handles the conversion from YAML
+        # scalar values to Python the dictionary format
+        fruits_list = yaml.load(file, Loader=yaml.FullLoader)
+
+        print(fruits_list)
+Output:
+
+    { 'apples': 20, 'mangoes': 2, 'bananas': 3, 'grapes': 100, 'pineapples': 1 }
+
+In the script above we specified yaml.FullLoader as the value for the Loader parameter which loads the full YAML language, avoiding the arbitrary code execution. Instead of using the load function and then passing yaml.FullLoader as the value for the Loader parameter, you can also use the full_load() function, as we will see in the next example.
+
+Let's now try and read the second YAML file in a similar manner using a Python script:
+
+    # read_categories.py file
+
+    import yaml
+
+    with open(r'E:\data\categories.yaml') as file:
+        documents = yaml.full_load(file)
+
+        for item, doc in documents.items():
+            print(item, ":", doc)
+
+Since there are 2 documents in the categories.yaml file, we ran a loop to read both of them.
+
+Output:
+
+    sports : ['soccer', 'football', 'basketball', 'cricket', 'hockey', 'table tennis']
+    countries : ['Pakistan', 'USA', 'India', 'China', 'Germany', 'France', 'Spain']
+
+As you can see from the last two examples, the library automatically handles the conversion of YAML formatted data to Python dictionaries and lists.
+
+#### Writing YAML Files in Python
+Now that we have learned how to convert a YAML file into a Python dictionary, let's try to do things the other way around i.e. serialize a Python dictionary and store it into a YAML formatted file. For this purpose, let's use the same dictionary that we got as an output from our last program.
+
+    import yaml
+
+    dict_file = [{'sports' : ['soccer', 'football', 'basketball', 'cricket', 'hockey', 'table tennis']},
+    {'countries' : ['Pakistan', 'USA', 'India', 'China', 'Germany', 'France', 'Spain']}]
+
+    with open(r'E:\data\store_file.yaml', 'w') as file:
+        documents = yaml.dump(dict_file, file)
+
+The dump() method takes the Python dictionary as the first, and a File object as the second parameter.
+
+Once the above code executes, a file named store_file.yaml will be created in your current working directory.
+
+    # store_file.yaml file contents:
+
+    - sports:
+
+    - soccer
+    - football
+    - basketball
+    - cricket
+    - hockey
+    - table tennis
+    - countries:
+
+    - Pakistan
+    - USA
+    - India
+    - China
+    - Germany
+    - France
+    - Spain
+
+Another useful functionality that the YAML library offers for the dump() method is the sort_keys parameter. To show what it does, let's apply it on our first file, i.e. fruits.yaml:
+
+    import yaml
+
+    with open(r'E:\data\fruits.yaml') as file:
+        doc = yaml.load(file, Loader=yaml.FullLoader)
+
+        sort_file = yaml.dump(doc, sort_keys=True)
+        print(sort_file)
+
+Output:
+
+    apples: 20
+    bananas: 3
+    grapes: 100
+    mangoes: 2
+    pineapples: 1
+
+You can see in the output that the fruits have been sorted in the alphabetical order.
+
+#### Conclusion
+In this brief tutorial, we learned how to install Python's YAML library (pyyaml) to manipulate YAML formatted files. We covered loading the contents of a YAML file into our Python program as dictionaries, as well as serializing Python dictionaries in to YAML files and storing their keys. The library is quite brief and only offers basic functionalities.
+
+Find out more about YAML [here.](https://yaml.org/)
+
+----
 
 ### References:
 - [Page Object Model (POM), Design Pattern - php example](https://medium.com/tech-tajawal/page-object-model-pom-design-pattern-f9588630800b)
