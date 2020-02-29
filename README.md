@@ -111,10 +111,10 @@ class Login(BasePage):
 ```
 ----
 
-### Basic Logging Tutorial
+## Basic Logging Tutorial
 Logging is a means of tracking events that happen when some software runs. The software’s developer adds logging calls to their code to indicate that certain events have occurred. An event is described by a descriptive message which can optionally contain variable data (i.e. data that is potentially different for each occurrence of the event). Events also have an importance which the developer ascribes to the event; the importance can also be called the level or severity.
 
-#### When to use logging
+### When to use logging
 Logging provides a set of convenience functions for simple logging usage. These are debug(), info(), warning(), error() and critical(). To determine when to use logging, see the table below, which states, for each of a set of common tasks, the best tool to use for it.
 
 
@@ -126,7 +126,7 @@ Logging provides a set of convenience functions for simple logging usage. These 
 | ERROR | Due to a more serious problem, the software has not been able to perform some function.|
 | CRITICAL | A serious error, indicating that the program itself may be unable to continue running. |
 
-#### Logging to a file
+### Logging to a file
 A very common situation is that of recording logging events in a file, so let’s look at that next. Be sure to try the following in a newly-started Python interpreter, and don’t just continue from the session described above:
 
 ```python
@@ -148,7 +148,7 @@ This example also shows how you can set the logging level which acts as the thre
 Find more about the logging [here.](https://docs.python.org/3.8/howto/logging.html#logging-basic-tutorial)
 
 ----
-#### Runners
+## Runners
 
 You can generate html reports with `pytest-html` and share your test reports or configure it in Jenkins reports.
 
@@ -167,19 +167,19 @@ pytest -v -s -m tagname --html=./reports/htmlreport.html
 pause
 ```
 ----
-### Reading and Writing YAML to a File in Python
+## Reading and Writing YAML to a File in Python
 
 
 YAML stands for Yet Another Markup Language. In recent years it has become very popular for its use in storing data in a serialized manner for configuration files. Since YAML essentially is a data format, the YAML library is quite brief, as the only functionality required of it is the ability to parse YAML formatted files.
 
-#### Installation
+### Installation
 
 The easiest way to install the YAML library in Python is via the pip package manager.
 
 ```
 $ pip install pyyaml
 ```
-#### Reading YAML Files in Python
+### Reading YAML Files in Python
 
 The contents of the first file are as follows:
 
@@ -254,7 +254,7 @@ Output:
 
 As you can see from the last two examples, the library automatically handles the conversion of YAML formatted data to Python dictionaries and lists.
 
-#### Writing YAML Files in Python
+### Writing YAML Files in Python
 Now that we have learned how to convert a YAML file into a Python dictionary, let's try to do things the other way around i.e. serialize a Python dictionary and store it into a YAML formatted file. For this purpose, let's use the same dictionary that we got as an output from our last program.
 
     import yaml
@@ -309,14 +309,14 @@ Output:
 
 You can see in the output that the fruits have been sorted in the alphabetical order.
 
-#### Conclusion
+### Yaml Conclusion
 In this brief tutorial, we learned how to install Python's YAML library (pyyaml) to manipulate YAML formatted files. We covered loading the contents of a YAML file into our Python program as dictionaries, as well as serializing Python dictionaries in to YAML files and storing their keys. The library is quite brief and only offers basic functionalities.
 
 Find out more about YAML [here.](https://yaml.org/)
 
 ----
 
-### References:
+## References:
 - [Page Object Model (POM), Design Pattern - php example](https://medium.com/tech-tajawal/page-object-model-pom-design-pattern-f9588630800b)
 - [Page Object Model (POM) & Page Factory - Java example](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.ht)
 - [Selenium's Page Object Pattern: The Key to Maintainable Tests- Python example](https://justin.abrah.ms/python/selenium-page-object-pattern--the-key-to-maintainable-tests.html)
