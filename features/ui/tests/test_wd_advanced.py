@@ -8,27 +8,18 @@ def test_take_screenshots(browser):
     url = "http://the-internet.herokuapp.com/login"
     browser.get(url)
 
-    try:
-        # use the following Login steps we created previously
-        print("loggin page started..")
-        login_page = Login(browser)
-        login_page.enter_username("tomsmith")
-        login_page.enter_password("SuperSecretPassword!")
-        login_page.click_login()
-        
-        print("logged in, taking screenshot")
-        sleep(10)
-        # assert "titlename" == login_page.get_title
+    # use the following Login steps we created previously
+    print("loggin page started..")
+    login_page = Login(browser)
+    login_page.enter_username("tomsmith")
+    login_page.enter_password("SuperSecretPassword!")
+    login_page.click_login()
+    print("logged in, taking screenshot")
+    sleep(10)
+    login_page.take_screenshot()
+    print('test completed!')
+    # assert "titlename" == login_page.get_title
 
-        filepath = "./screenshots/" + utils.get_timestamp() + ".png"
-        browser.save_screenshot(filepath)
-        print('test completed!')
-
-    except NoSuchElementException:
-        print("Something went wrong!")
-        filepath = "./screenshots/error-" + utils.get_timestamp() + ".png"
-        browser.save_screenshot(filepath)
-        raise
 
 
 @pytest.mark.popupwindow
