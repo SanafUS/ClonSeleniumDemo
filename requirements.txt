@@ -16,7 +16,7 @@ pyparsing==2.4.6
 pytest==5.3.5
 pytest-html==2.0.1
 pytest-metadata==1.8.0
-PyYAML==5.3
+PyYAML==5.4
 rope==0.16.0
 selenium==3.141.0
 six==1.13.0
